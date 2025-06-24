@@ -2,6 +2,7 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import OrderDetailsPage from "./components/OrderDetailsPage";
 import CreateOrderPage from "./components/CreateOrderPage";
+import DeleteOrderPage from "./components/DeleteOrderPage";
 
 function App() {
   const [activeOption, setActiveOption] = useState("read");
@@ -15,7 +16,7 @@ function App() {
       case "update":
         return <div className="p-6">Update Page (Select & edit order)</div>;
       case "delete":
-        return <div className="p-6">Delete Page (Delete confirmation)</div>;
+        return <DeleteOrderPage />;
       default:
         return null;
     }

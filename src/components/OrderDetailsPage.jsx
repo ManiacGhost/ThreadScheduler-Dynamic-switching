@@ -27,7 +27,7 @@ export default function OrderDetailsPage() {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto bg-white shadow rounded">
+    <div className="p-6 max-w-4xl mx-auto bg-white shadow rounded mt-10">
       <h1 className="text-2xl font-bold mb-4">Order Details Viewer</h1>
 
       <div className="mb-4 flex gap-2">
