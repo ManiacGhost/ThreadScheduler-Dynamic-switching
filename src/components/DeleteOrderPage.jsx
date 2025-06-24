@@ -15,20 +15,33 @@ export default function DeleteOrderPage() {
 
     try {
       setStatus("loading");
-      await axios.post(
+      const response = await axios.post(
         "http://localhost:8085/api/v1/orders/delete",
         orderId,
         {
           headers: { "Content-Type": "text/plain" },
         }
       );
-      setStatus("success");
-      setMessage(`Order ${orderId} deleted successfully.`);
-      setOrderId("");
+
+      const { statusMessage, status: backendStatus } = response.data;
+
+      if (backendStatus && backendStatus.startsWith("2")) {
+        setStatus("success");
+        setMessage(statusMessage || "Order deleted successfully.");
+        setOrderId("");
+      } else {
+        setStatus("error");
+        setMessage(statusMessage || "Something went wrong.");
+      }
     } catch (err) {
       console.error(err);
       setStatus("error");
-      setMessage(`Failed to delete order: ${orderId}`);
+
+      if (err.response && err.response.data?.statusMessage) {
+        setMessage(err.response.data.statusMessage);
+      } else {
+        setMessage(`Failed to delete order: ${orderId}`);
+      }
     }
   };
 
