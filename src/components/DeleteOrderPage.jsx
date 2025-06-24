@@ -16,7 +16,7 @@ export default function DeleteOrderPage() {
     try {
       setStatus("loading");
       const response = await axios.post(
-        "http://localhost:8085/api/v1/orders/delete",
+        `${import.meta.env.VITE_API_BASE_URL}/orders/delete`,
         orderId,
         {
           headers: { "Content-Type": "text/plain" },

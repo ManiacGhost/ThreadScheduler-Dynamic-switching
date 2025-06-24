@@ -11,7 +11,7 @@ export default function UpdateOrderPage() {
   const fetchOrder = async () => {
     setStatus("loading");
     try {
-      const response = await axios.post("http://localhost:8085/api/v1/orders/read", { orderId });
+      const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/orders/read`, { orderId });
       if (response.data.data) {
         const data = response.data.data;
         setForm({
@@ -71,7 +71,7 @@ export default function UpdateOrderPage() {
 
     try {
       setStatus("loading");
-      await axios.post("http://localhost:8085/api/v1/orders/update", payload);
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/orders/update`, payload);
       setMessage("Order updated successfully!");
       setStatus("success");
     } catch (err) {

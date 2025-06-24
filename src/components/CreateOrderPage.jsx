@@ -94,9 +94,32 @@ export default function CreateOrderPage() {
 
     try {
       setStatus("loading");
-      await axios.post("http://localhost:8085/api/v1/orders/save", payload);
-      setMessage("Order saved successfully!");
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/orders/save`,
+        payload
+      );
       setStatus("success");
+      setMessage("Order saved successfully!");
+      setForm({
+        orderId: "",
+        customerId: "",
+        orderDate: "",
+        status: "Pending",
+        totalAmount: "",
+        shippingStreet: "",
+        shippingCity: "",
+        shippingState: "",
+        shippingZip: "",
+        shippingCountry: "",
+        billingStreet: "",
+        billingCity: "",
+        billingState: "",
+        billingZip: "",
+        billingCountry: "",
+        paymentMethod: "",
+        paidAmount: "",
+      });
+      setItems([{ itemName: "", quantity: 1, price: "", category: "" }]);
     } catch (error) {
       console.error("Order save failed:", error);
       setMessage("Failed to save order.");
