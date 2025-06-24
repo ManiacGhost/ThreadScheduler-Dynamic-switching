@@ -13,7 +13,7 @@ export default function OrderDetailsPage() {
     setOrderData(null);
 
     try {
-      const response = await axios.post('http://localhost:8080/read', { orderId });
+      const response = await axios.post('http://localhost:8085/api/v1/orders/read', { orderId });
 
       if (response.data.status === 'SUCCESS') {
         setOrderData(response.data.data); 
@@ -27,7 +27,7 @@ export default function OrderDetailsPage() {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto bg-white shadow rounded">
+    <div className="p-6 max-w-3xl mx-auto bg-white shadow rounded mt-10">
       <h1 className="text-2xl font-bold mb-4">Fetch Order Details</h1>
 
       <div className="mb-4">

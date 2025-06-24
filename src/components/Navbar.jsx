@@ -1,4 +1,4 @@
-const options = ["home", "about", "services", "contact"];
+const options = ["create", "read", "update", "delete"];
 
 export default function Navbar({ onSelect }) {
   return (

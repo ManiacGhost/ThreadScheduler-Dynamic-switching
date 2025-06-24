@@ -1,22 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
-import HomeContent from "./components/HomeContent";
+import OrderDetailsPage from "./components/OrderDetailsPage";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [activeOption, setActiveOption] = useState("home");
+  const [activeOption, setActiveOption] = useState("read");
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/${activeOption}`)
-      .then((res) => res.json())
-      .then((data) => setData(data))
-      .catch((err) => console.error("API Error:", err));
-  }, [activeOption]);
+  const renderPage = () => {
+    switch (activeOption) {
+      case "create":
+        return <div className="p-6">Create Page (Form to add order)</div>;
+      case "read":
+        return <OrderDetailsPage />;
+      case "update":
+        return <div className="p-6">Update Page (Select & edit order)</div>;
+      case "delete":
+        return <div className="p-6">Delete Page (Delete confirmation)</div>;
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar onSelect={setActiveOption} />
-      <HomeContent data={data} />
+      {renderPage()}
     </div>
   );
 }
