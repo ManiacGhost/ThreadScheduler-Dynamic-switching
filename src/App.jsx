@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import OrderDetailsPage from "./components/OrderDetailsPage";
+import CreateOrderPage from "./components/CreateOrderPage";
 
 function App() {
   const [activeOption, setActiveOption] = useState("read");
@@ -8,7 +9,7 @@ function App() {
   const renderPage = () => {
     switch (activeOption) {
       case "create":
-        return <div className="p-6">Create Page (Form to add order)</div>;
+        return <CreateOrderPage />;
       case "read":
         return <OrderDetailsPage />;
       case "update":

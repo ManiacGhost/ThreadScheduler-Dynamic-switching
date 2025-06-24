@@ -13,9 +13,8 @@ export default function OrderDetailsPage() {
     setOrderData(null);
 
     try {
-      const response = await axios.post('http://localhost:8080/read', { orderId });
+      const response = await axios.post('http://localhost:8085/api/v1/orders/read', { orderId });
       console.log('API response:', response.data); 
-
       if (response.data.status === '200 OK') {
         setOrderData(response.data.data); 
         setError(response.data.statusMessage || 'Something went wrong');
